@@ -1,7 +1,9 @@
-import React from 'react';
+// @ts-nocheck
+
+import React, { useMemo } from 'react';
 import { Table } from 'antd';
 import type { TableColumnsType, TableProps } from 'antd';
-import { DarazOrders } from '../constants';
+import { Data } from '../constants';
 
 interface DataType {
   key: React.Key;
@@ -37,9 +39,14 @@ const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter,
   console.log('params', pagination, filters, sorter, extra);
 };
 
-const CustomTable = () => (
+const CustomTable = ({selectCompnay}: {selectCompnay: string}) => {
+  const data = useMemo(() => {
+    return Data[selectCompnay] || []
+  }, [selectCompnay])
   // @ts-ignore
-  <Table columns={columns} dataSource={DarazOrders} onChange={onChange} />
-);
+  return <div> <h1 className='text-5xl font-bold m-5'>Companies Order Table</h1>
+  <Table columns={columns} dataSource={data} onChange={onChange} />
+  </div>
+}
 
 export default CustomTable;
