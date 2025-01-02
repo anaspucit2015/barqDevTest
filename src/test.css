@@ -1,0 +1,9 @@
+.company-container{
+    display: flex;
+    gap: 1.5rem
+}
+.company-name{
+    cursor: pointer;
+    padding: 0.5rem;
+    text-align: center;
+}
